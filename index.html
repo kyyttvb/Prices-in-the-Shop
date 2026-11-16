@@ -1,0 +1,2398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listening Practice – Prices in the Shop</title>
+<link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    /* =========================================================
+       MODERN PASTEL EDUCATIONAL THEME - PRICES IN THE SHOP
+       ========================================================= */
+
+    :root {
+      --bg-page: #f7f9fc;
+      --bg-card: #ffffff;
+      --bg-soft-blue: #eef5ff;
+      --bg-soft-mint: #eefbf5;
+      --bg-soft-peach: #fff4ed;
+      --bg-soft-lavender: #f4f1ff;
+
+      --primary: #4f6df5;
+      --primary-hover: #3b58e0;
+      --primary-light: #e0e7ff;
+
+      --text-main: #1e293b;
+      --text-muted: #5b6b82;
+      --border-color: #e2e8f0;
+
+      --success-bg: #dcfce7;
+      --success-border: #22c55e;
+      --success-text: #15803d;
+
+      --error-bg: #fee2e2;
+      --error-border: #ef4444;
+      --error-text: #b91c1c;
+
+      --radius-lg: 22px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+
+      --shadow-sm: 0 4px 12px rgba(30, 41, 59, 0.04);
+      --shadow-md: 0 10px 28px rgba(30, 41, 59, 0.07);
+      --transition: 0.22s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-page);
+      background-image:
+        radial-gradient(circle at 10% 10%, rgba(224, 231, 255, 0.55) 0%, transparent 40%),
+        radial-gradient(circle at 90% 20%, rgba(220, 252, 231, 0.45) 0%, transparent 40%);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ==================== HEADER ==================== */
+    .top-header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .brand-icon {
+      font-size: 1.75rem;
+      background: var(--primary-light);
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+    }
+
+    .brand-text {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-badge {
+      background: var(--bg-soft-lavender);
+      color: #5b46e8;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .btn-nav {
+      background: var(--bg-soft-blue);
+      color: var(--primary);
+      border: 1px solid #cfe0ff;
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-nav:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* ==================== BUTTONS ==================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.98rem;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(79, 109, 245, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--text-main);
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1.5px solid var(--border-color);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-large {
+      width: 100%;
+      padding: 14px 24px;
+      font-size: 1.02rem;
+    }
+
+    /* ==================== MAIN VIEWS ==================== */
+    .main-content {
+      flex: 1;
+      padding-top: 32px;
+      padding-bottom: 60px;
+    }
+
+    .view {
+      animation: fadeSlideIn 0.35s ease;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ==================== HOME PAGE ==================== */
+    .hero-banner {
+      text-align: center;
+      max-width: 680px;
+      margin: 12px auto 40px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .main-heading {
+      font-size: clamp(2rem, 4vw, 2.85rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      line-height: 1.15;
+    }
+
+    .main-subtitle {
+      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 6px;
+      margin-bottom: 14px;
+    }
+
+    .hero-description {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .exercise-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 28px;
+    }
+
+    .exercise-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .exercise-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 34px rgba(30, 41, 59, 0.1);
+    }
+
+    .card-mint {
+      background: linear-gradient(180deg, var(--bg-soft-mint) 0%, #ffffff 42%);
+    }
+
+    .card-peach {
+      background: linear-gradient(180deg, var(--bg-soft-peach) 0%, #ffffff 42%);
+    }
+
+    .card-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .exercise-tag {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    .task-count-pill {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .card-illustration {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+      letter-spacing: 6px;
+    }
+
+    .card-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .card-description {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      margin-bottom: 18px;
+    }
+
+    .card-checklist {
+      list-style: none;
+      margin-bottom: 26px;
+      padding: 14px 16px;
+      background: #f8fafc;
+      border-radius: var(--radius-md);
+      border: 1px solid #edf2f7;
+      flex: 1;
+    }
+
+    .card-checklist li {
+      font-size: 0.93rem;
+      color: var(--text-main);
+      padding: 4px 0 4px 22px;
+      position: relative;
+    }
+
+    .card-checklist li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #16a34a;
+      font-weight: 800;
+    }
+
+    /* ==================== EXERCISE HEADER & PROGRESS ==================== */
+    .exercise-header {
+      margin-bottom: 24px;
+    }
+
+    .exercise-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .level-pill {
+      background: var(--bg-soft-lavender);
+      color: #5b46e8;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .exercise-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .exercise-lead {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      margin-bottom: 18px;
+    }
+
+    .progress-bar-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .progress-stats {
+      color: var(--primary);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4f6df5, #34d399);
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    /* ==================== AUDIO PLAYER & TRANSCRIPT ==================== */
+    .audio-wrapper {
+      position: sticky;
+      top: 76px;
+      z-index: 90;
+      margin-bottom: 24px;
+    }
+
+    .audio-card {
+      background: #ffffff;
+      border: 1.5px solid #dbeafe;
+      border-radius: var(--radius-lg);
+      padding: 18px 22px;
+      box-shadow: 0 12px 28px rgba(79, 109, 245, 0.12);
+    }
+
+    .audio-controls-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .audio-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: none;
+      border-radius: 999px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-play-pause {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      min-width: 112px;
+    }
+
+    .btn-play-pause:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-replay {
+      background: var(--bg-soft-blue);
+      color: var(--primary);
+      padding: 10px 15px;
+      font-size: 0.9rem;
+    }
+
+    .btn-replay:hover {
+      background: #dbeafe;
+    }
+
+    .audio-timeline-box {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .time-label {
+      font-variant-numeric: tabular-nums;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      min-width: 42px;
+    }
+
+    .audio-seek {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .audio-seek::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    .audio-seek::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    .transcript-bar {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .audio-file-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .btn-transcript {
+      background: var(--bg-soft-lavender);
+      color: #4c35de;
+      border: 1px solid #ddd6fe;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-transcript:hover {
+      background: #ede9fe;
+    }
+
+    .transcript-panel {
+      margin-top: 14px;
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      max-height: 290px;
+      overflow-y: auto;
+      font-size: 0.94rem;
+    }
+
+    .transcript-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .transcript-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .transcript-item strong {
+      color: var(--primary);
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .transcript-line {
+      margin: 2px 0;
+      color: var(--text-main);
+    }
+
+    .audio-error-msg {
+      margin-top: 10px;
+      background: var(--error-bg);
+      color: var(--error-text);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    /* ==================== TASK JUMP BAR & SECTIONS ==================== */
+    .task-jump-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .jump-pill {
+      text-decoration: none;
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .jump-pill:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--bg-soft-blue);
+    }
+
+    .task-section {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-md);
+      scroll-margin-top: 185px;
+    }
+
+    .task-header {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .task-badge {
+      display: inline-block;
+      background: var(--bg-soft-blue);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .task-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .task-instructions {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .task-instructions code {
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* ==================== EXERCISE 1 TASK 1: PRODUCTS GRID ==================== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+      gap: 22px;
+    }
+
+    .product-card {
+      background: #fbfdff;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .product-card:hover {
+      border-color: #c7d2fe;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .product-number {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-image-box {
+      width: 132px;
+      height: 112px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .product-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text-main);
+    }
+
+    /* Fixed Currency Input Wrapper */
+    .currency-input-box {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 190px;
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+
+    .currency-input-box:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 109, 245, 0.16);
+    }
+
+    .currency-symbol {
+      background: #f1f5f9;
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 10px 13px;
+      border-right: 1.5px solid #cbd5e1;
+      user-select: none;
+      pointer-events: none;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+
+    .price-input {
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 10px 12px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      background: transparent;
+    }
+
+    .price-input::placeholder {
+      color: #94a3b8;
+      font-weight: 500;
+      font-size: 0.92rem;
+    }
+
+    /* Validation states for inputs */
+    .currency-input-box.is-correct {
+      border-color: var(--success-border);
+      background: var(--success-bg);
+    }
+
+    .currency-input-box.is-correct .currency-symbol {
+      background: #bbf7d0;
+      color: var(--success-text);
+      border-right-color: var(--success-border);
+    }
+
+    .currency-input-box.is-incorrect {
+      border-color: var(--error-border);
+      background: var(--error-bg);
+    }
+
+    .currency-input-box.is-incorrect .currency-symbol {
+      background: #fecaca;
+      color: var(--error-text);
+      border-right-color: var(--error-border);
+    }
+
+    .feedback-note {
+      margin-top: 8px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      min-height: 20px;
+    }
+
+    .feedback-note.correct {
+      color: var(--success-text);
+    }
+
+    .feedback-note.incorrect {
+      color: var(--error-text);
+    }
+
+    /* ==================== EXERCISE 1 TASK 2: YES/NO QUESTIONS ==================== */
+    .yesno-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .yesno-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 16px 20px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .yesno-row.row-correct {
+      background: var(--success-bg);
+      border-color: var(--success-border);
+    }
+
+    .yesno-row.row-incorrect {
+      background: var(--error-bg);
+      border-color: var(--error-border);
+    }
+
+    .yesno-question-text {
+      font-weight: 700;
+      font-size: 1.02rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .q-num-badge {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      color: var(--primary);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    .yesno-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .choice-btn {
+      padding: 8px 22px;
+      border-radius: 999px;
+      border: 2px solid #cbd5e1;
+      background: #ffffff;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .choice-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .choice-btn.selected {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .choice-btn.opt-correct {
+      background: #16a34a !important;
+      border-color: #16a34a !important;
+      color: #ffffff !important;
+    }
+
+    .choice-btn.opt-incorrect {
+      background: #dc2626 !important;
+      border-color: #dc2626 !important;
+      color: #ffffff !important;
+    }
+
+    .yesno-reveal {
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    /* ==================== EXERCISE 2 TASK 1: TOTAL & CHANGE ==================== */
+    .cashier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 20px;
+    }
+
+    .person-cash-card {
+      background: #fbfdff;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .person-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .person-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--bg-soft-peach);
+      color: #c2410c;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .person-title {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .cash-field-group {
+      margin-bottom: 14px;
+    }
+
+    .cash-field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .cash-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .cash-field-group .currency-input-box {
+      max-width: 100%;
+    }
+
+    /* ==================== EXERCISE 2 TASK 2: WHAT DID THEY BUY ==================== */
+    .shopping-lists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 20px;
+    }
+
+    .person-shop-card {
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border: 1.5px solid var(--border-color);
+      background: #ffffff;
+    }
+
+    .person-shop-card:nth-child(odd) {
+      background: #fcfdff;
+    }
+
+    .person-shop-card:nth-child(even) {
+      background: #faf9ff;
+    }
+
+    .shop-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .selection-counter {
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--bg-soft-blue);
+      color: var(--primary);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .checkbox-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .checkbox-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .checkbox-option:hover {
+      border-color: var(--primary);
+    }
+
+    .checkbox-option input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .checkbox-option.is-checked {
+      background: var(--bg-soft-blue);
+      border-color: var(--primary);
+    }
+
+    .checkbox-option.choice-correct {
+      background: var(--success-bg) !important;
+      border-color: var(--success-border) !important;
+      color: var(--success-text) !important;
+    }
+
+    .checkbox-option.choice-incorrect {
+      background: var(--error-bg) !important;
+      border-color: var(--error-border) !important;
+      color: var(--error-text) !important;
+    }
+
+    .shop-reveal-box {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .shop-reveal-box.correct {
+      background: var(--success-bg);
+      color: var(--success-text);
+    }
+
+    .shop-reveal-box.incorrect {
+      background: var(--error-bg);
+      color: var(--error-text);
+    }
+
+    /* ==================== TASK FOOTER & SCORE BANNER ==================== */
+    .task-footer {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .task-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .score-banner {
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      font-weight: 800;
+      font-size: 1.05rem;
+      background: var(--bg-soft-blue);
+      color: var(--primary);
+      border: 1.5px solid #bfdbfe;
+    }
+
+    .score-banner.perfect-score {
+      background: var(--success-bg);
+      color: var(--success-text);
+      border-color: var(--success-border);
+    }
+
+    .bottom-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    /* ==================== TOAST NOTIFICATION ==================== */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e293b;
+      color: #ffffff;
+      padding: 13px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.94rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 999;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==================== FOOTER ==================== */
+    .site-footer {
+      text-align: center;
+      padding: 24px 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 640px) {
+      .task-section {
+        padding: 20px 16px;
+      }
+
+      .audio-wrapper {
+        top: 70px;
+      }
+
+      .audio-card {
+        padding: 14px;
+      }
+
+      .yesno-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <div class="container header-inner">
+      <div class="brand" id="brand-home" role="button" tabindex="0">
+        <span class="brand-icon" aria-hidden="true">🛍️</span>
+        <div class="brand-text">
+          <span class="brand-title">ShopEnglish</span>
+          <span class="brand-badge">Level A1–A2</span>
+        </div>
+      </div>
+
+      <nav class="header-nav" id="header-nav">
+        <button class="btn-nav hidden" id="btn-back-home" type="button">
+          ← Back to Home
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Floating Toast Notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <main class="container main-content">
+    <!-- ==================== HOME VIEW ==================== -->
+    <section id="view-home" class="view active-view">
+      <div class="hero-banner">
+        <div class="hero-badge">🎧 Interactive Listening Platform</div>
+        <h1 class="main-heading">Listening Practice</h1>
+        <p class="main-subtitle">Prices in the Shop</p>
+        <p class="hero-description">
+          Practice understanding prices, shopping conversations, totals, and change in everyday English. Choose an exercise below to begin.
+        </p>
+      </div>
+
+      <div class="exercise-cards-grid">
+        <!-- Exercise 1 Card -->
+        <article class="exercise-card card-mint">
+          <div class="card-top-row">
+            <span class="exercise-tag">Exercise 1</span>
+            <span class="task-count-pill">2 Tasks • 12 Points</span>
+          </div>
+          <div class="card-illustration" aria-hidden="true">🏷️👟📷</div>
+          <h2 class="card-title">How Much Is It?</h2>
+          <p class="card-description">
+            Listen to people asking about prices and answer the questions.
+          </p>
+          <ul class="card-checklist">
+            <li>Task 1: Write the prices of 6 items</li>
+            <li>Task 2: Decide if the customer bought the item</li>
+          </ul>
+          <button class="btn btn-primary btn-large" data-open-exercise="1" type="button">
+            Start Exercise 1 →
+          </button>
+        </article>
+
+        <!-- Exercise 2 Card -->
+        <article class="exercise-card card-peach">
+          <div class="card-top-row">
+            <span class="exercise-tag">Exercise 2</span>
+            <span class="task-count-pill">2 Tasks • 24 Points</span>
+          </div>
+          <div class="card-illustration" aria-hidden="true">🧾💵🛒</div>
+          <h2 class="card-title">At the Cashier</h2>
+          <p class="card-description">
+            Listen to conversations in a shop and complete the tasks.
+          </p>
+          <ul class="card-checklist">
+            <li>Task 1: Write the total amount and change</li>
+            <li>Task 2: Choose the 2 items each person bought</li>
+          </ul>
+          <button class="btn btn-primary btn-large" data-open-exercise="2" type="button">
+            Start Exercise 2 →
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================== EXERCISE 1 VIEW ==================== -->
+    <section id="view-ex1" class="view hidden">
+      <div class="exercise-header">
+        <div class="exercise-header-meta">
+          <span class="exercise-tag">Exercise 1</span>
+          <span class="level-pill">A1–A2 Listening</span>
+        </div>
+        <h1 class="exercise-title">How Much Is It?</h1>
+        <p class="exercise-lead">
+          Listen to six short conversations in a shop. Use the same audio recording for both Task 1 and Task 2.
+        </p>
+
+        <!-- Progress Indicator -->
+        <div class="progress-bar-card">
+          <div class="progress-header">
+            <span class="progress-label">Exercise 1 Progress</span>
+            <span class="progress-stats" id="ex1-progress-text">0 / 12 answered</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="ex1-progress-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sticky Audio Player + Transcript -->
+      <div class="audio-wrapper" id="player-ex1-container"></div>
+
+      <!-- Task Switcher Tabs -->
+      <div class="task-jump-bar">
+        <a href="#ex1-task1" class="jump-pill">Task 1: Write the Prices</a>
+        <a href="#ex1-task2" class="jump-pill">Task 2: Did They Buy It?</a>
+      </div>
+
+      <!-- EXERCISE 1: TASK 1 -->
+      <div class="task-section" id="ex1-task1">
+        <div class="task-header">
+          <span class="task-badge">Task 1</span>
+          <h2 class="task-title">Write the Prices</h2>
+          <p class="task-instructions">
+            Listen to these people asking about prices and write the prices on each item. Enter numbers only (for example: <code>45.50</code> or <code>45</code>).
+          </p>
+        </div>
+
+        <div class="products-grid" id="ex1-t1-grid"></div>
+
+        <div class="task-footer">
+          <div class="task-actions">
+            <button class="btn btn-primary" id="ex1-t1-check" type="button">Check Answers</button>
+            <button class="btn btn-secondary hidden" id="ex1-t1-retry" type="button">Try Again</button>
+          </div>
+          <div class="score-banner hidden" id="ex1-t1-score"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 1: TASK 2 -->
+      <div class="task-section" id="ex1-task2">
+        <div class="task-header">
+          <span class="task-badge">Task 2</span>
+          <h2 class="task-title">Did They Buy It?</h2>
+          <p class="task-instructions">
+            Listen again and decide whether each person bought the item. Select <strong>Yes</strong> or <strong>No</strong> for each conversation.
+          </p>
+        </div>
+
+        <div class="yesno-list" id="ex1-t2-list"></div>
+
+        <div class="task-footer">
+          <div class="task-actions">
+            <button class="btn btn-primary" id="ex1-t2-check" type="button">Check Answers</button>
+            <button class="btn btn-secondary hidden" id="ex1-t2-retry" type="button">Try Again</button>
+          </div>
+          <div class="score-banner hidden" id="ex1-t2-score"></div>
+        </div>
+      </div>
+
+      <div class="bottom-nav-bar">
+        <button class="btn btn-outline" data-go-home type="button">← Back to Home</button>
+        <button class="btn btn-primary" data-open-exercise="2" type="button">Next: Exercise 2 →</button>
+      </div>
+    </section>
+
+    <!-- ==================== EXERCISE 2 VIEW ==================== -->
+    <section id="view-ex2" class="view hidden">
+      <div class="exercise-header">
+        <div class="exercise-header-meta">
+          <span class="exercise-tag">Exercise 2</span>
+          <span class="level-pill">A1–A2 Listening</span>
+        </div>
+        <h1 class="exercise-title">At the Cashier</h1>
+        <p class="exercise-lead">
+          Listen to six conversations at the shop checkout. Use the same audio recording for both Task 1 and Task 2.
+        </p>
+
+        <!-- Progress Indicator -->
+        <div class="progress-bar-card">
+          <div class="progress-header">
+            <span class="progress-label">Exercise 2 Progress</span>
+            <span class="progress-stats" id="ex2-progress-text">0 / 24 completed</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="ex2-progress-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sticky Audio Player + Transcript -->
+      <div class="audio-wrapper" id="player-ex2-container"></div>
+
+      <!-- Task Switcher Tabs -->
+      <div class="task-jump-bar">
+        <a href="#ex2-task1" class="jump-pill">Task 1: Total and Change</a>
+        <a href="#ex2-task2" class="jump-pill">Task 2: What Did They Buy?</a>
+      </div>
+
+      <!-- EXERCISE 2: TASK 1 -->
+      <div class="task-section" id="ex2-task1">
+        <div class="task-header">
+          <span class="task-badge">Task 1</span>
+          <h2 class="task-title">Total and Change</h2>
+          <p class="task-instructions">
+            Listen to cashiers in a store, write the total amount each person needs to pay and the amount of change each person receives.
+          </p>
+        </div>
+
+        <div class="cashier-grid" id="ex2-t1-grid"></div>
+
+        <div class="task-footer">
+          <div class="task-actions">
+            <button class="btn btn-primary" id="ex2-t1-check" type="button">Check Answers</button>
+            <button class="btn btn-secondary hidden" id="ex2-t1-retry" type="button">Try Again</button>
+          </div>
+          <div class="score-banner hidden" id="ex2-t1-score"></div>
+        </div>
+      </div>
+
+      <!-- EXERCISE 2: TASK 2 -->
+      <div class="task-section" id="ex2-task2">
+        <div class="task-header">
+          <span class="task-badge">Task 2</span>
+          <h2 class="task-title">What Did They Buy?</h2>
+          <p class="task-instructions">
+            Listen again and choose the <strong>two items</strong> each person bought.
+          </p>
+        </div>
+
+        <div class="shopping-lists-grid" id="ex2-t2-grid"></div>
+
+        <div class="task-footer">
+          <div class="task-actions">
+            <button class="btn btn-primary" id="ex2-t2-check" type="button">Check Answers</button>
+            <button class="btn btn-secondary hidden" id="ex2-t2-retry" type="button">Try Again</button>
+          </div>
+          <div class="score-banner hidden" id="ex2-t2-score"></div>
+        </div>
+      </div>
+
+      <div class="bottom-nav-bar">
+        <button class="btn btn-outline" data-open-exercise="1" type="button">← Previous: Exercise 1</button>
+        <button class="btn btn-primary" data-go-home type="button">Back to Home 🏠</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Interactive English Listening Practice • Topic: Prices in the Shop (Level A1–A2)</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ==========================================================================
+       1. AUDIO & ANSWER KEY CONFIGURATION
+       ========================================================================== */
+
+    const AUDIO_CONFIG = {
+      exercise1: 'audio/ex 1.mp3',
+      exercise2: 'audio/ex 2.mp3'
+    };
+
+    const ANSWER_KEY = {
+      // 1. Exercise 1 – Task 1: Six correct prices (numbers only, no $ sign)
+      ex1Task1: [
+        45,     // 1. Shoes ($45)
+        4099,   // 2. Computer ($4,099)
+        36.95,  // 3. Tie ($36.95)
+        26.95,  // 4. Shorts ($26.95)
+        12.25,  // 5. Earrings ($12.25)
+        125     // 6. Digital camera (on sale for $125)
+      ],
+
+      // 2. Exercise 1 – Task 2: Six Yes/No answers
+      ex1Task2: [
+        'No',   // 1. Shoes
+        'No',   // 2. Computer
+        'No',   // 3. Tie
+        'Yes',  // 4. Shorts
+        'Yes',  // 5. Earrings
+        'No'    // 6. Digital camera
+      ],
+
+      // 3. Exercise 2 – Task 1: Six total amounts and six change amounts
+      ex2Task1: [
+        { total: 7.50,  change: 12.50 }, // Person 1
+        { total: 19.90, change: 0.10  }, // Person 2 (ten cents = 0.10)
+        { total: 9.65,  change: 10.35 }, // Person 3
+        { total: 8.15,  change: 11.85 }, // Person 4
+        { total: 12.49, change: 7.51  }, // Person 5
+        { total: 18.25, change: 1.75  }  // Person 6 (a dollar seventy-five = 1.75)
+      ],
+
+      // 4. Exercise 2 – Task 2: Two correct shopping items for each person
+      ex2Task2: [
+        ['Soup', 'Shampoo'],         // Person 1
+        ['CD', 'Cassette'],          // Person 2
+        ['Newspapers', 'Magazines'], // Person 3
+        ['T-shirt', 'Socks'],        // Person 4
+        ['Chocolates', 'Cookies'],   // Person 5
+        ['Magazines', 'Book']        // Person 6
+      ]
+    };
+
+    /* ==========================================================================
+       2. EXERCISE DATA & TRANSCRIPTS
+       ========================================================================== */
+
+    const TRANSCRIPTS = {
+      exercise1: [
+        {
+          title: '1. Shoes',
+          lines: [
+            'A: Can I help you?',
+            'B: Yes, how much are these shoes?',
+            'A: They’re on sale. Let’s see… They’re $45.',
+            'B: Uh-huh.',
+            'A: Do you want to try them on?',
+            'B: No, thanks.'
+          ]
+        },
+        {
+          title: '2. Computer',
+          lines: [
+            'A: How much is this computer?',
+            'B: It’s on sale for $4,099.',
+            'A: $4,099!',
+            'B: Do you want to buy it?',
+            'A: That’s okay. I’m just looking.'
+          ]
+        },
+        {
+          title: '3. Tie',
+          lines: [
+            'A: This tie isn’t bad. How much is it?',
+            'B: It’s $36.95.',
+            'A: $36.95. Well, maybe I don’t really need a tie. Thanks, anyway.'
+          ]
+        },
+        {
+          title: '4. Shorts',
+          lines: [
+            'A: These shorts are nice, aren’t they?',
+            'B: Yes, and they’re only $26.95. Do you want to take them?',
+            'A: Yeah, I think I will.'
+          ]
+        },
+        {
+          title: '5. Earrings',
+          lines: [
+            'A: How much are these earrings?',
+            'B: They’re only $12.25.',
+            'A: They’re nice. I’ll take them.',
+            'B: Okay.'
+          ]
+        },
+        {
+          title: '6. Digital camera',
+          lines: [
+            'A: That camera looks interesting. How much is it?',
+            'B: It’s on sale. It was $145, but now it’s only $125.',
+            'A: Hmm. Well, I’ll think about it.'
+          ]
+        }
+      ],
+      exercise2: [
+        {
+          title: 'Person 1',
+          lines: [
+            'Let’s see. Soup. That’s two for a dollar. And a bottle of shampoo—$6.50. So that comes to $7.50 and your change is $12.50.'
+          ]
+        },
+        {
+          title: 'Person 2',
+          lines: [
+            'Okay, now—let me see what you’ve got. The CD is $14.95, and the cassette—oh, a good one, my favorite group—it’s on sale for $4.95. So, let me see…. That comes to $19.90. So here’s your change, ten cents.'
+          ]
+        },
+        {
+          title: 'Person 3',
+          lines: [
+            'Yes, can I help you? Okay. Let’s see. The newspapers are $1.50, and the magazines will cost another…$8.15. Yes, so that’s, let me see, $9.65, right? Here’s your change, $10.35.'
+          ]
+        },
+        {
+          title: 'Person 4',
+          lines: [
+            'So you’re taking the T-shirt—nice choice. The color suits you. Okay, that’s $4.95, then the socks. They’re another $3.20, so that’s $8.15, and here’s your change, $11.85.'
+          ]
+        },
+        {
+          title: 'Person 5',
+          lines: [
+            'Mmm, I like chocolates, too. Okay, that’s $9.50 for the chocolates. And chocolate chip cookies, too. Mmm. You really do like chocolate. The cookies are $2.99. So that’s $12.49. And here’s your change, $7.51.'
+          ]
+        },
+        {
+          title: 'Person 6',
+          lines: [
+            'Is this all? Okay. Let’s see. Now the magazines are $6.25. And you’re taking the book? That’s $12.00. So that comes to $18.25 altogether. And here’s your change. That’s a dollar seventy-five.'
+          ]
+        }
+      ]
+    };
+
+    const EX1_PRODUCTS = [
+      {
+        name: 'Shoes',
+        bg: '#e0f2fe',
+        svg: `<svg width="86" height="86" viewBox="0 0 64 64" fill="none">
+          <path d="M8 42C8 37 14 35 21 35L31 24L39 30C44 34 56 36 56 43V47H8V42Z" fill="#3b82f6"/>
+          <rect x="8" y="46" width="48" height="5" rx="2.5" fill="#1e293b"/>
+          <path d="M27 29L32 33M31 26L36 30" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>`
+      },
+      {
+        name: 'Computer',
+        bg: '#ede9fe',
+        svg: `<svg width="86" height="86" viewBox="0 0 64 64" fill="none">
+          <rect x="10" y="12" width="44" height="30" rx="4" fill="#6366f1"/>
+          <rect x="14" y="16" width="36" height="22" rx="2" fill="#e0e7ff"/>
+          <path d="M26 42H38L41 50H23L26 42Z" fill="#94a3b8"/>
+          <rect x="18" y="49" width="28" height="3.5" rx="1.75" fill="#475569"/>
+        </svg>`
+      },
+      {
+        name: 'Tie',
+        bg: '#fce7f3',
+        svg: `<svg width="86" height="86" viewBox="0 0 64 64" fill="none">
+          <path d="M26 10H38L35 18H29L26 10Z" fill="#db2777"/>
+          <path d="M29 18H35L39 46L32 55L25 46L29 18Z" fill="#ec4899"/>
+          <path d="M28 28L36 33M27 37L37 42" stroke="#fbcfe8" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>`
+      },
+      {
+        name: 'Shorts',
+        bg: '#dcfce7',
+        svg: `<svg width="86" height="86" viewBox="0 0 64 64" fill="none">
+          <path d="M16 16H48L52 46H35L32 33L29 46H12L16 16Z" fill="#10b981"/>
+          <rect x="16" y="16" width="32" height="5" fill="#047857"/>
+          <line x1="32" y1="21" x2="32" y2="33" stroke="#065f46" stroke-width="2"/>
+        </svg>`
+      },
+      {
+        name: 'Earrings',
+        bg: '#fef3c7',
+        svg: `<svg width="86" height="86" viewBox="0 0 64 64" fill="none">
+          <path d="M22 14C22 10 26 10 26 14V22" stroke="#d97706" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="24" cy="34" r="10" stroke="#f59e0b" stroke-width="3.5" fill="#fde68a"/>
+          <circle cx="24" cy="34" r="3" fill="#d97706"/>
+          <path d="M40 14C40 10 44 10 44 14V22" stroke="#d97706" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="42" cy="34" r="10" stroke="#f59e0b" stroke-width="3.5" fill="#fde68a"/>
+          <circle cx="42" cy="34" r="3" fill="#d97706"/>
+        </svg>`
+      },
+      {
+        name: 'Digital camera',
+        bg: '#ffedd5',
+        svg: `<svg width="86" height="86" viewBox="0 0 64 64" fill="none">
+          <rect x="22" y="14" width="20" height="6" rx="2" fill="#475569"/>
+          <rect x="10" y="19" width="44" height="30" rx="6" fill="#334155"/>
+          <circle cx="32" cy="34" r="10" fill="#94a3b8"/>
+          <circle cx="32" cy="34" r="6.5" fill="#0f172a"/>
+          <circle cx="34.5" cy="31.5" r="2" fill="#e0f2fe"/>
+          <rect x="43" y="23" width="6" height="4" rx="1.5" fill="#fb923c"/>
+        </svg>`
+      }
+    ];
+
+    const EX2_SHOPPING_OPTIONS = [
+      ['Soup', 'Soap', 'Apples', 'Tomatoes', 'Shampoo'],
+      ['CD', 'game', 'Video', 'Cassette', 'Poster'],
+      ['Newspapers', 'Postage stamps', 'Books', 'Notebook', 'Magazines'],
+      ['Coat', 'T-shirt', 'Shoes', 'Socks', 'Tie'],
+      ['Chocolates', 'Cake', 'Soda', 'Bread', 'Cookies'],
+      ['Stamps', 'Magazines', 'Newspaper', 'Book', 'Notebook']
+    ];
+
+    /* ==========================================================================
+       3. STATE & HELPER FUNCTIONS
+       ========================================================================== */
+
+    const appState = {
+      ex1Task2Answers: Array(6).fill(null),
+      ex2Task2Answers: Array.from({ length: 6 }, () => []),
+      players: {}
+    };
+
+    let toastTimer = null;
+    function showToast(message) {
+      const toastEl = document.getElementById('toast');
+      toastEl.textContent = message;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toastEl.classList.remove('show');
+      }, 2600);
+    }
+
+    function parseNumericAnswer(rawValue) {
+      if (typeof rawValue !== 'string') return null;
+      const cleaned = rawValue.trim().replace(/,/g, '');
+      if (cleaned === '') return null;
+      if (!/^\d*(\.\d+)?$/.test(cleaned) || cleaned === '.') return null;
+      const num = Number(cleaned);
+      return Number.isFinite(num) ? num : null;
+    }
+
+    /* ==========================================================================
+       4. NAVIGATION & PROGRESS TRACKING
+       ========================================================================== */
+
+    function switchView(viewName) {
+      Object.values(appState.players).forEach((p) => {
+        if (p && p.audio && !p.audio.paused) {
+          p.audio.pause();
+        }
+      });
+
+      document.querySelectorAll('.view').forEach((v) => v.classList.add('hidden'));
+      const target = document.getElementById(`view-${viewName}`);
+      if (target) {
+        target.classList.remove('hidden');
+      }
+
+      const backBtn = document.getElementById('btn-back-home');
+      if (viewName === 'home') {
+        backBtn.classList.add('hidden');
+      } else {
+        backBtn.classList.remove('hidden');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateExercise1Progress() {
+      let answered = 0;
+      document.querySelectorAll('#ex1-t1-grid .price-input').forEach((inp) => {
+        if (inp.value.trim() !== '') answered++;
+      });
+      appState.ex1Task2Answers.forEach((ans) => {
+        if (ans !== null) answered++;
+      });
+
+      const total = 12;
+      const pct = Math.round((answered / total) * 100);
+      document.getElementById('ex1-progress-text').textContent = `${answered} / ${total} answered`;
+      document.getElementById('ex1-progress-fill').style.width = `${pct}%`;
+    }
+
+    function updateExercise2Progress() {
+      let completed = 0;
+      document.querySelectorAll('#ex2-t1-grid .price-input').forEach((inp) => {
+        if (inp.value.trim() !== '') completed++;
+      });
+      appState.ex2Task2Answers.forEach((arr) => {
+        completed += arr.length;
+      });
+
+      const total = 24;
+      const pct = Math.round((completed / total) * 100);
+      document.getElementById('ex2-progress-text').textContent = `${completed} / ${total} completed`;
+      document.getElementById('ex2-progress-fill').style.width = `${pct}%`;
+    }
+
+    /* ==========================================================================
+       5. CUSTOM AUDIO PLAYER + TRANSCRIPT COMPONENT
+       ========================================================================== */
+
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    function buildAudioPlayer(containerId, audioSrc, transcriptItems, keyName) {
+      const container = document.getElementById(containerId);
+
+      const transcriptHtml = transcriptItems
+        .map(
+          (block) => `
+          <div class="transcript-item">
+            <strong>${block.title}</strong>
+            ${block.lines.map((line) => `<p class="transcript-line">${line}</p>`).join('')}
+          </div>
+        `
+        )
+        .join('');
+
+      container.innerHTML = `
+        <div class="audio-card">
+          <div class="audio-controls-row">
+            <button type="button" class="audio-btn btn-play-pause" data-action="toggle">
+              ▶ Play
+            </button>
+            <button type="button" class="audio-btn btn-replay" data-action="replay" title="Replay from start">
+              ↺ Replay
+            </button>
+            <div class="audio-timeline-box">
+              <span class="time-label" data-role="current">0:00</span>
+              <input type="range" class="audio-seek" min="0" max="100" value="0" step="0.1" aria-label="Audio progress" />
+              <span class="time-label" data-role="duration">0:00</span>
+            </div>
+          </div>
+
+          <div class="transcript-bar">
+            <span class="audio-file-hint">🎧 Recording: <strong>${audioSrc}</strong></span>
+            <button type="button" class="btn-transcript" data-action="transcript">
+              📄 Transcript
+            </button>
+          </div>
+
+          <div class="transcript-panel hidden" data-role="transcript-panel">
+            ${transcriptHtml}
+          </div>
+
+          <div class="audio-error-msg hidden" data-role="error-msg">
+            ⚠️ Audio file not found at <strong>${audioSrc}</strong>. Please check that the file is inside the <code>audio</code> folder.
+          </div>
+        </div>
+      `;
+
+      const audio = new Audio(audioSrc);
+      audio.preload = 'metadata';
+
+      const btnToggle = container.querySelector('[data-action="toggle"]');
+      const btnReplay = container.querySelector('[data-action="replay"]');
+      const seekSlider = container.querySelector('.audio-seek');
+      const currentEl = container.querySelector('[data-role="current"]');
+      const durationEl = container.querySelector('[data-role="duration"]');
+      const btnTranscript = container.querySelector('[data-action="transcript"]');
+      const transcriptPanel = container.querySelector('[data-role="transcript-panel"]');
+      const errorMsg = container.querySelector('[data-role="error-msg"]');
+
+      audio.addEventListener('loadedmetadata', () => {
+        durationEl.textContent = formatTime(audio.duration);
+        seekSlider.max = audio.duration || 100;
+        errorMsg.classList.add('hidden');
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        currentEl.textContent = formatTime(audio.currentTime);
+        if (!seekSlider.dataset.dragging) {
+          seekSlider.value = audio.currentTime;
+        }
+      });
+
+      audio.addEventListener('play', () => {
+        btnToggle.textContent = '⏸ Pause';
+      });
+
+      audio.addEventListener('pause', () => {
+        btnToggle.textContent = '▶ Play';
+      });
+
+      audio.addEventListener('ended', () => {
+        btnToggle.textContent = '▶ Play';
+      });
+
+      audio.addEventListener('error', () => {
+        errorMsg.classList.remove('hidden');
+      });
+
+      btnToggle.addEventListener('click', () => {
+        Object.entries(appState.players).forEach(([k, p]) => {
+          if (k !== keyName && p.audio && !p.audio.paused) {
+            p.audio.pause();
+          }
+        });
+
+        if (audio.paused) {
+          audio.play().catch(() => {
+            errorMsg.classList.remove('hidden');
+          });
+        } else {
+          audio.pause();
+        }
+      });
+
+      btnReplay.addEventListener('click', () => {
+        audio.currentTime = 0;
+        audio.play().catch(() => {
+          errorMsg.classList.remove('hidden');
+        });
+      });
+
+      seekSlider.addEventListener('input', () => {
+        seekSlider.dataset.dragging = 'true';
+        currentEl.textContent = formatTime(Number(seekSlider.value));
+      });
+
+      seekSlider.addEventListener('change', () => {
+        audio.currentTime = Number(seekSlider.value);
+        delete seekSlider.dataset.dragging;
+      });
+
+      btnTranscript.addEventListener('click', () => {
+        const isHidden = transcriptPanel.classList.toggle('hidden');
+        btnTranscript.textContent = isHidden ? '📄 Transcript' : '✕ Hide Transcript';
+      });
+
+      appState.players[keyName] = { audio };
+    }
+
+    /* ==========================================================================
+       6. EXERCISE 1 RENDERING & CHECKING LOGIC
+       ========================================================================== */
+
+    function initExercise1() {
+      const t1Grid = document.getElementById('ex1-t1-grid');
+      t1Grid.innerHTML = EX1_PRODUCTS.map(
+        (item, idx) => `
+        <div class="product-card" data-idx="${idx}">
+          <span class="product-number">${idx + 1}</span>
+          <div class="product-image-box" style="background-color: ${item.bg};" aria-hidden="true">
+            ${item.svg}
+          </div>
+          <h3 class="product-name">${item.name}</h3>
+          <div class="currency-input-box" id="ex1-t1-box-${idx}">
+            <span class="currency-symbol" aria-hidden="true">$</span>
+            <input
+              type="text"
+              inputmode="decimal"
+              class="price-input"
+              data-idx="${idx}"
+              id="ex1-t1-input-${idx}"
+              placeholder="0.00"
+              aria-label="Price for ${item.name}"
+            />
+          </div>
+          <div class="feedback-note" id="ex1-t1-fb-${idx}"></div>
+        </div>
+      `
+      ).join('');
+
+      t1Grid.querySelectorAll('.price-input').forEach((input) => {
+        input.addEventListener('input', () => {
+          let val = input.value.replace(/[^0-9.]/g, '');
+          const parts = val.split('.');
+          if (parts.length > 2) {
+            val = parts[0] + '.' + parts.slice(1).join('');
+          }
+          input.value = val;
+
+          // Clear red/green styling while student is typing a new attempt
+          const idx = input.dataset.idx;
+          const box = document.getElementById(`ex1-t1-box-${idx}`);
+          const fb = document.getElementById(`ex1-t1-fb-${idx}`);
+          box.classList.remove('is-correct', 'is-incorrect');
+          fb.classList.remove('correct', 'incorrect');
+          fb.textContent = '';
+
+          updateExercise1Progress();
+        });
+      });
+
+      document.getElementById('ex1-t1-check').addEventListener('click', () => {
+        let score = 0;
+        ANSWER_KEY.ex1Task1.forEach((correctPrice, idx) => {
+          const box = document.getElementById(`ex1-t1-box-${idx}`);
+          const input = document.getElementById(`ex1-t1-input-${idx}`);
+          const fb = document.getElementById(`ex1-t1-fb-${idx}`);
+          const userVal = parseNumericAnswer(input.value);
+
+          box.classList.remove('is-correct', 'is-incorrect');
+          fb.classList.remove('correct', 'incorrect');
+
+          if (userVal !== null && Math.abs(userVal - correctPrice) < 0.001) {
+            score++;
+            box.classList.add('is-correct');
+            fb.classList.add('correct');
+            fb.textContent = '✓ Correct!';
+          } else {
+            box.classList.add('is-incorrect');
+            fb.classList.add('incorrect');
+            fb.textContent = '✗ Incorrect. Try again!';
+          }
+        });
+
+        const scoreEl = document.getElementById('ex1-t1-score');
+        scoreEl.textContent = `Your Score: ${score} / 6`;
+        scoreEl.classList.remove('hidden', 'perfect-score');
+        if (score === 6) scoreEl.classList.add('perfect-score');
+
+        document.getElementById('ex1-t1-retry').classList.remove('hidden');
+      });
+
+      document.getElementById('ex1-t1-retry').addEventListener('click', () => {
+        ANSWER_KEY.ex1Task1.forEach((correctPrice, idx) => {
+          const box = document.getElementById(`ex1-t1-box-${idx}`);
+          const input = document.getElementById(`ex1-t1-input-${idx}`);
+          const fb = document.getElementById(`ex1-t1-fb-${idx}`);
+          const userVal = parseNumericAnswer(input.value);
+
+          if (userVal === null || Math.abs(userVal - correctPrice) >= 0.001) {
+            input.value = '';
+          }
+          box.classList.remove('is-correct', 'is-incorrect');
+          fb.classList.remove('correct', 'incorrect');
+          fb.textContent = '';
+        });
+
+        document.getElementById('ex1-t1-score').classList.add('hidden');
+        document.getElementById('ex1-t1-retry').classList.add('hidden');
+        updateExercise1Progress();
+      });
+
+      // Task 2: Yes/No
+      const t2List = document.getElementById('ex1-t2-list');
+      t2List.innerHTML = Array.from({ length: 6 }, (_, idx) => `
+        <div class="yesno-row" id="ex1-t2-row-${idx}">
+          <div class="yesno-question-text">
+            <span class="q-num-badge">${idx + 1}</span>
+            <span>Did the person buy the item?</span>
+          </div>
+          <div class="yesno-controls">
+            <button type="button" class="choice-btn" data-q="${idx}" data-val="Yes">Yes</button>
+            <button type="button" class="choice-btn" data-q="${idx}" data-val="No">No</button>
+            <span class="yesno-reveal" id="ex1-t2-fb-${idx}"></span>
+          </div>
+        </div>
+      `).join('');
+
+      t2List.querySelectorAll('.choice-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const qIdx = Number(btn.dataset.q);
+          const val = btn.dataset.val;
+          appState.ex1Task2Answers[qIdx] = val;
+
+          const row = document.getElementById(`ex1-t2-row-${qIdx}`);
+          const fb = document.getElementById(`ex1-t2-fb-${qIdx}`);
+          row.classList.remove('row-correct', 'row-incorrect');
+          fb.textContent = '';
+
+          row.querySelectorAll('.choice-btn').forEach((b) => {
+            b.classList.remove('selected', 'opt-correct', 'opt-incorrect');
+          });
+          btn.classList.add('selected');
+          updateExercise1Progress();
+        });
+      });
+
+      document.getElementById('ex1-t2-check').addEventListener('click', () => {
+        let score = 0;
+        ANSWER_KEY.ex1Task2.forEach((correctChoice, idx) => {
+          const userChoice = appState.ex1Task2Answers[idx];
+          const row = document.getElementById(`ex1-t2-row-${idx}`);
+          const fb = document.getElementById(`ex1-t2-fb-${idx}`);
+          const buttons = row.querySelectorAll('.choice-btn');
+
+          row.classList.remove('row-correct', 'row-incorrect');
+          buttons.forEach((b) => b.classList.remove('opt-correct', 'opt-incorrect'));
+
+          if (userChoice === correctChoice) {
+            score++;
+            row.classList.add('row-correct');
+            buttons.forEach((b) => {
+              if (b.dataset.val === userChoice) b.classList.add('opt-correct');
+            });
+            fb.style.color = 'var(--success-text)';
+            fb.textContent = '✓ Correct!';
+          } else {
+            row.classList.add('row-incorrect');
+            buttons.forEach((b) => {
+              if (b.dataset.val === userChoice) b.classList.add('opt-incorrect');
+            });
+            fb.style.color = 'var(--error-text)';
+            fb.textContent = '✗ Incorrect. Try again!';
+          }
+        });
+
+        const scoreEl = document.getElementById('ex1-t2-score');
+        scoreEl.textContent = `Your Score: ${score} / 6`;
+        scoreEl.classList.remove('hidden', 'perfect-score');
+        if (score === 6) scoreEl.classList.add('perfect-score');
+
+        document.getElementById('ex1-t2-retry').classList.remove('hidden');
+      });
+
+      document.getElementById('ex1-t2-retry').addEventListener('click', () => {
+        ANSWER_KEY.ex1Task2.forEach((correctChoice, idx) => {
+          const row = document.getElementById(`ex1-t2-row-${idx}`);
+          const fb = document.getElementById(`ex1-t2-fb-${idx}`);
+          const buttons = row.querySelectorAll('.choice-btn');
+
+          if (appState.ex1Task2Answers[idx] !== correctChoice) {
+            appState.ex1Task2Answers[idx] = null;
+            buttons.forEach((b) => b.classList.remove('selected'));
+          }
+          row.classList.remove('row-correct', 'row-incorrect');
+          buttons.forEach((b) => b.classList.remove('opt-correct', 'opt-incorrect'));
+          fb.textContent = '';
+        });
+
+        document.getElementById('ex1-t2-score').classList.add('hidden');
+        document.getElementById('ex1-t2-retry').classList.add('hidden');
+        updateExercise1Progress();
+      });
+    }
+
+    /* ==========================================================================
+       7. EXERCISE 2 RENDERING & CHECKING LOGIC
+       ========================================================================== */
+
+    function initExercise2() {
+      const t1Grid = document.getElementById('ex2-t1-grid');
+      t1Grid.innerHTML = Array.from({ length: 6 }, (_, idx) => `
+        <div class="person-cash-card">
+          <div class="person-header">
+            <span class="person-avatar">${idx + 1}</span>
+            <h3 class="person-title">Person ${idx + 1}</h3>
+          </div>
+
+          <div class="cash-field-group">
+            <label class="cash-label" for="ex2-t1-total-${idx}">Total:</label>
+            <div class="currency-input-box" id="ex2-t1-total-box-${idx}">
+              <span class="currency-symbol" aria-hidden="true">$</span>
+              <input
+                type="text"
+                inputmode="decimal"
+                class="price-input"
+                data-person="${idx}"
+                data-field="total"
+                id="ex2-t1-total-${idx}"
+                placeholder="Enter amount"
+              />
+            </div>
+            <div class="feedback-note" id="ex2-t1-total-fb-${idx}"></div>
+          </div>
+
+          <div class="cash-field-group">
+            <label class="cash-label" for="ex2-t1-change-${idx}">Change:</label>
+            <div class="currency-input-box" id="ex2-t1-change-box-${idx}">
+              <span class="currency-symbol" aria-hidden="true">$</span>
+              <input
+                type="text"
+                inputmode="decimal"
+                class="price-input"
+                data-person="${idx}"
+                data-field="change"
+                id="ex2-t1-change-${idx}"
+                placeholder="Enter amount"
+              />
+            </div>
+            <div class="feedback-note" id="ex2-t1-change-fb-${idx}"></div>
+          </div>
+        </div>
+      `).join('');
+
+      t1Grid.querySelectorAll('.price-input').forEach((input) => {
+        input.addEventListener('input', () => {
+          let val = input.value.replace(/[^0-9.]/g, '');
+          const parts = val.split('.');
+          if (parts.length > 2) {
+            val = parts[0] + '.' + parts.slice(1).join('');
+          }
+          input.value = val;
+
+          // Clear previous validation state while editing
+          const pIdx = input.dataset.person;
+          const field = input.dataset.field;
+          const box = document.getElementById(`ex2-t1-${field}-box-${pIdx}`);
+          const fb = document.getElementById(`ex2-t1-${field}-fb-${pIdx}`);
+          box.classList.remove('is-correct', 'is-incorrect');
+          fb.classList.remove('correct', 'incorrect');
+          fb.textContent = '';
+
+          updateExercise2Progress();
+        });
+      });
+
+      document.getElementById('ex2-t1-check').addEventListener('click', () => {
+        let score = 0;
+
+        ANSWER_KEY.ex2Task1.forEach((expected, idx) => {
+          ['total', 'change'].forEach((field) => {
+            const box = document.getElementById(`ex2-t1-${field}-box-${idx}`);
+            const input = document.getElementById(`ex2-t1-${field}-${idx}`);
+            const fb = document.getElementById(`ex2-t1-${field}-fb-${idx}`);
+            const userVal = parseNumericAnswer(input.value);
+            const correctVal = expected[field];
+
+            box.classList.remove('is-correct', 'is-incorrect');
+            fb.classList.remove('correct', 'incorrect');
+
+            if (userVal !== null && Math.abs(userVal - correctVal) < 0.001) {
+              score++;
+              box.classList.add('is-correct');
+              fb.classList.add('correct');
+              fb.textContent = '✓ Correct!';
+            } else {
+              box.classList.add('is-incorrect');
+              fb.classList.add('incorrect');
+              fb.textContent = '✗ Incorrect. Try again!';
+            }
+          });
+        });
+
+        const scoreEl = document.getElementById('ex2-t1-score');
+        scoreEl.textContent = `Your Score: ${score} / 12`;
+        scoreEl.classList.remove('hidden', 'perfect-score');
+        if (score === 12) scoreEl.classList.add('perfect-score');
+
+        document.getElementById('ex2-t1-retry').classList.remove('hidden');
+      });
+
+      document.getElementById('ex2-t1-retry').addEventListener('click', () => {
+        ANSWER_KEY.ex2Task1.forEach((expected, idx) => {
+          ['total', 'change'].forEach((field) => {
+            const box = document.getElementById(`ex2-t1-${field}-box-${idx}`);
+            const input = document.getElementById(`ex2-t1-${field}-${idx}`);
+            const fb = document.getElementById(`ex2-t1-${field}-fb-${idx}`);
+            const userVal = parseNumericAnswer(input.value);
+
+            if (userVal === null || Math.abs(userVal - expected[field]) >= 0.001) {
+              input.value = '';
+            }
+            box.classList.remove('is-correct', 'is-incorrect');
+            fb.classList.remove('correct', 'incorrect');
+            fb.textContent = '';
+          });
+        });
+
+        document.getElementById('ex2-t1-score').classList.add('hidden');
+        document.getElementById('ex2-t1-retry').classList.add('hidden');
+        updateExercise2Progress();
+      });
+
+      // Task 2: Checkboxes
+      const t2Grid = document.getElementById('ex2-t2-grid');
+      t2Grid.innerHTML = EX2_SHOPPING_OPTIONS.map(
+        (items, pIdx) => `
+        <div class="person-shop-card" id="ex2-t2-card-${pIdx}">
+          <div class="shop-card-top">
+            <h3 class="person-title">PERSON ${pIdx + 1}</h3>
+            <span class="selection-counter" id="ex2-t2-count-${pIdx}">0 / 2 selected</span>
+          </div>
+          <div class="checkbox-list">
+            ${items
+              .map(
+                (itemName) => `
+              <label class="checkbox-option">
+                <input type="checkbox" data-person="${pIdx}" value="${itemName}" />
+                <span>${itemName}</span>
+              </label>
+            `
+              )
+              .join('')}
+          </div>
+          <div class="shop-reveal-box hidden" id="ex2-t2-fb-${pIdx}"></div>
+        </div>
+      `
+      ).join('');
+
+      t2Grid.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+        checkbox.addEventListener('change', () => {
+          const pIdx = Number(checkbox.dataset.person);
+          const val = checkbox.value;
+          const selectedList = appState.ex2Task2Answers[pIdx];
+
+          if (checkbox.checked) {
+            if (selectedList.length >= 2) {
+              checkbox.checked = false;
+              showToast('You can choose only two items.');
+              return;
+            }
+            selectedList.push(val);
+          } else {
+            appState.ex2Task2Answers[pIdx] = selectedList.filter((item) => item !== val);
+          }
+
+          const card = document.getElementById(`ex2-t2-card-${pIdx}`);
+          const fb = document.getElementById(`ex2-t2-fb-${pIdx}`);
+          fb.classList.add('hidden');
+          fb.textContent = '';
+
+          card.querySelectorAll('.checkbox-option').forEach((lbl) => {
+            const cb = lbl.querySelector('input');
+            lbl.classList.toggle('is-checked', cb.checked);
+            lbl.classList.remove('choice-correct', 'choice-incorrect');
+          });
+
+          document.getElementById(`ex2-t2-count-${pIdx}`).textContent =
+            `${appState.ex2Task2Answers[pIdx].length} / 2 selected`;
+
+          updateExercise2Progress();
+        });
+      });
+
+      document.getElementById('ex2-t2-check').addEventListener('click', () => {
+        let score = 0;
+
+        ANSWER_KEY.ex2Task2.forEach((correctPair, pIdx) => {
+          const userSelection = appState.ex2Task2Answers[pIdx];
+          const card = document.getElementById(`ex2-t2-card-${pIdx}`);
+          const fb = document.getElementById(`ex2-t2-fb-${pIdx}`);
+
+          const isExactPair =
+            userSelection.length === 2 &&
+            correctPair.every((item) => userSelection.includes(item));
+
+          if (isExactPair) {
+            score += 2;
+          }
+
+          card.querySelectorAll('.checkbox-option').forEach((lbl) => {
+            const cb = lbl.querySelector('input');
+            lbl.classList.remove('choice-correct', 'choice-incorrect');
+            if (cb.checked) {
+              if (correctPair.includes(cb.value)) {
+                lbl.classList.add('choice-correct');
+              } else {
+                lbl.classList.add('choice-incorrect');
+              }
+            }
+          });
+
+          fb.classList.remove('hidden', 'correct', 'incorrect');
+          if (isExactPair) {
+            fb.classList.add('correct');
+            fb.textContent = '✓ Correct!';
+          } else {
+            fb.classList.add('incorrect');
+            fb.textContent = '✗ Incorrect. Try again!';
+          }
+        });
+
+        const scoreEl = document.getElementById('ex2-t2-score');
+        scoreEl.textContent = `Your Score: ${score} / 12`;
+        scoreEl.classList.remove('hidden', 'perfect-score');
+        if (score === 12) scoreEl.classList.add('perfect-score');
+
+        document.getElementById('ex2-t2-retry').classList.remove('hidden');
+      });
+
+      document.getElementById('ex2-t2-retry').addEventListener('click', () => {
+        ANSWER_KEY.ex2Task2.forEach((correctPair, pIdx) => {
+          const userSelection = appState.ex2Task2Answers[pIdx];
+          const isExactPair =
+            userSelection.length === 2 &&
+            correctPair.every((item) => userSelection.includes(item));
+
+          const card = document.getElementById(`ex2-t2-card-${pIdx}`);
+          const fb = document.getElementById(`ex2-t2-fb-${pIdx}`);
+
+          if (!isExactPair) {
+            appState.ex2Task2Answers[pIdx] = [];
+            card.querySelectorAll('input[type="checkbox"]').forEach((cb) => {
+              cb.checked = false;
+            });
+            document.getElementById(`ex2-t2-count-${pIdx}`).textContent = '0 / 2 selected';
+          }
+
+          card.querySelectorAll('.checkbox-option').forEach((lbl) => {
+            const cb = lbl.querySelector('input');
+            lbl.classList.remove('choice-correct', 'choice-incorrect');
+            lbl.classList.toggle('is-checked', cb.checked);
+          });
+
+          fb.classList.add('hidden');
+          fb.textContent = '';
+        });
+
+        document.getElementById('ex2-t2-score').classList.add('hidden');
+        document.getElementById('ex2-t2-retry').classList.add('hidden');
+        updateExercise2Progress();
+      });
+    }
+
+    /* ==========================================================================
+       8. BOOTSTRAP APPLICATION
+       ========================================================================== */
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('brand-home').addEventListener('click', () => switchView('home'));
+      document.getElementById('btn-back-home').addEventListener('click', () => switchView('home'));
+
+      document.querySelectorAll('[data-go-home]').forEach((btn) => {
+        btn.addEventListener('click', () => switchView('home'));
+      });
+
+      document.querySelectorAll('[data-open-exercise]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const exNum = btn.dataset.openExercise;
+          switchView(`ex${exNum}`);
+        });
+      });
+
+      buildAudioPlayer('player-ex1-container', AUDIO_CONFIG.exercise1, TRANSCRIPTS.exercise1, 'ex1');
+      buildAudioPlayer('player-ex2-container', AUDIO_CONFIG.exercise2, TRANSCRIPTS.exercise2, 'ex2');
+
+      initExercise1();
+      initExercise2();
+    });
+  </script>
+</body>
+</html>
